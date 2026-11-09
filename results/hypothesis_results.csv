@@ -1,0 +1,9 @@
+id,crisp_dm_phase,hypothesis,accepted,evidence
+H1,Data understanding,PLC clocks are in sync,True,"7 shared safety edges, max difference 0.091 s <= 0.169 s"
+H2,Data understanding,Machine repeats one cycle,True,"7 complete cycles, each 1 belt forward, 1 belt backward, 2 robot moves"
+H3,Modelling,Losses = activations far longer than normal,True,"10 activations, 8 events; same count for k = 1.5 and 3"
+H4,Evaluation,"Detections are real (no gap, no distance)",True,worst-case excess >= 2.06 s; above longest normal >= 1.96 s
+H5,Evaluation,Extra time is a standstill (short stop),4 of 8,motor output OFF and encoder silent; belt/conveyor/drill have no motion sensor
+H6,Evaluation,Cause visible (curtain or HMI stop),4 of 8,"3 safety curtain stops ended by reset, 1 HMI stop; E2-E5 no cause signal"
+H7,Evaluation,Events make the pallet cycle longer,True,"exact permutation test p = 0.029, +33.9 s over 3 cycles"
+H8,Evaluation,No stop is missed,True,all 6 long quiet periods explained

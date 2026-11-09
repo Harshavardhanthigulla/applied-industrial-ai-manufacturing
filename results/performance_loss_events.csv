@@ -1,0 +1,9 @@
+event,cycle,start_s,end_s,lost_time_s,equipment,standstill_proven,cause,abnormal_before_cause_s,oee_category
+E1,5,252.42,272.17,10.5,Warehouse: horizontal axis towards rack (WH.Q3_horRack); Drilling station: Suction on/off (A1.7),True,Safety curtain stop (A201.0 low) 255.4 to 264.3 s,2.97,Idle time / short stop
+E2,6,291.28,299.08,6.94,Warehouse: conveyor belt forward (WH.Q1_beltForward),False,no cause signal in the data,,Short stop or reduced speed (not separable)
+E3,6,314.84,321.63,6.22,Warehouse: conveyor belt backward (WH.Q2_beltBackward),False,no cause signal in the data,,Short stop or reduced speed (not separable)
+E4,7,350.8,360.42,8.77,Warehouse: conveyor belt forward (WH.Q1_beltForward),False,no cause signal in the data,,Short stop or reduced speed (not separable)
+E5,7,363.1,371.09,2.21,Drilling station: conveyor on (A0.7),False,no cause signal in the data,,Short stop or reduced speed (not separable)
+E6,7,385.07,400.86,10.37,Drilling station: drill on (A1.0); Warehouse: cantilever forward (WH.Q7_cantForw),True,Safety curtain stop (A201.0 low) 390.1 to 400.4 s,4.0,Idle time / short stop
+E7,9,452.99,463.28,7.19,Warehouse: horizontal axis towards rack (WH.Q3_horRack),True,Safety curtain stop (A201.0 low) 453.1 to 460.7 s,0.0,Idle time / short stop
+E8,9,468.45,476.48,4.92,Warehouse: cantilever backward (WH.Q8_cantBack),True,HMI stop (Visual.start low) 468.5 to 473.5 s,0.0,Idle time / short stop
