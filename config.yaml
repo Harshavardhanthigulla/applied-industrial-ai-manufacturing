@@ -1,0 +1,51 @@
+# MP1 - Performance loss detection: central configuration.
+# All paths are relative to the repository root. Every threshold used by the
+# analysis lives here; the notebooks' parameter cells use the same values.
+# The reason for each value is in docs/methodology.md.
+
+paths:
+  raw_siemens: data/raw/Beispieldatensatz Siemens S7 SPS.csv
+  raw_beckhoff: data/raw/Beispieldatensatz Beckhoff SPS.csv
+  variable_file: data/raw/Variablenerklärung.xlsx
+  reports_dir: reports              # everything run_mp1.py writes
+  figures_dir: reports/figures
+
+timebase:
+  # Gaps longer than this are listed in the `gaps` evidence table. 0.5 s is about 6x the median
+  # sampling step of either PLC.
+  gap_report_s: 0.5
+  # Two gaps (one per PLC) "co-occur" if their intervals overlap after widening each by this.
+  gap_cooccur_tolerance_s: 0.2
+  # Regular grids tested for transition loss (Phase 2 resampling comparison).
+  # Also used for the event-level sensitivity check (evaluation.event_sensitivity).
+  resample_grids_ms: [20, 50, 76, 93, 100, 200, 500]
+
+phases:
+  # Production starts at the first press of the documented HMI reset button.
+  production_start_signal: E200.0
+  curtain_signal: A201.0          # documented "Safetydata from curtain to beckhoff"; low = stop
+  curtain_signal_beckhoff: VG.safeCurtainShort
+  hmi_run_signal: Visual.start    # Beckhoff, station "Visualization"; low = HMI stop (name reading)
+  pallet_request_signals: [WH.desiredPalletX, WH.desiredPalletY]
+  drilling_cycle_register: MW22   # documented "Value that tells which cycle is going on"
+
+rule:
+  tukey_k: 3.0                    # Tukey (1977) "far out" fence
+  min_activations: 5              # quartiles of fewer values are not meaningful
+  # Minimum excess over the median duration. "auto" = largest logging gap of
+  # either PLC (no single logging gap can create an excess this large).
+  min_excess_s: auto
+  sweep_k: [1.5, 3.0]
+  sweep_min_excess_s: [1.0, 1.5, 1.84, 2.0, 2.5, 3.0, 4.0, 5.0]
+  sweep_merge_gap_s: [0.0, 1.0, 2.0, 5.0, 10.0]
+  merge_gap_s: 0.0                # flagged activations are merged only if they overlap
+
+ml:
+  seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  contamination_sweep: [0.01, 0.02, 0.05, 0.10]
+  kmeans_k: [2, 3, 4, 5, 6, 7, 8]
+  top_k: 10
+
+performance:
+  bootstrap_resamples: 5000
+  bootstrap_seed: 42
