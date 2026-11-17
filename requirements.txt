@@ -1,3 +1,5 @@
+# Python 3.11, 3.12 or 3.13 (the results in reports/ were produced on 3.13.1).
+# Python 3.14 is not currently supported because pandas 2.2.3 and numpy 2.2.1 do not provide compatible wheels
 pandas==2.2.3
 numpy==2.2.1
 scipy==1.17.0
@@ -5,4 +7,8 @@ scikit-learn==1.8.0
 matplotlib==3.10.8
 PyYAML==6.0.3
 openpyxl==3.1.5
+
+# ipykernel alone only provides the kernel, does not provide a notebook interface by itself.
+# Interface only, no effect on any result. `notebook` or the VS Code Jupyter extension work too.
 ipykernel>=6
+jupyterlab==4.6.6
