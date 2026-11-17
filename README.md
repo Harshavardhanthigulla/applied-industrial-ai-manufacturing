@@ -14,10 +14,20 @@ Repository: https://github.com/Harshavardhanthigulla/applied-industrial-ai-manuf
 
 ## How to run
 
+Needs **Python 3.11, 3.12 or 3.13** (developed on 3.13.1). Python 3.14 does not work: two of the pinned
+packages publish no 3.14 wheels yet.
+
+Run everything from the project folder (the one containing `run_mp1.py`):
+
 ```bash
+python -m venv .venv
+.venv\Scripts\activate          # Windows;  source .venv/bin/activate on macOS/Linux
 pip install -r requirements.txt
-# run notebooks/01 ... 06 in order (each hands its results to the next through data/processed/)
-python run_mp1.py          # optional: the same figures and evidence workbook without Jupyter
+
+python run_mp1.py                 # rebuilds all figures and the evidence workbook from data/raw/
+
+jupyter lab                       # or: run notebooks/01 ... 06 in order, each one completely
+                                  # (each hands its results to the next through data/processed/)
 ```
 
 ## Files
@@ -30,12 +40,9 @@ python run_mp1.py          # optional: the same figures and evidence workbook wi
 | `notebooks/04_model_1_engineering_detection.ipynb` | Model 1 rule and PLC evidence, attribution, reduced speed, robustness |
 | `notebooks/05_model_2_machine_learning.ipynb` | feature table, Isolation Forest, K-Means, candidate review |
 | `notebooks/06_evaluation_and_results.ipynb` | cycle-level effect, performance, registers, results by level, evidence workbook |
-| `src/mp1/`, `run_mp1.py` | optional headless re-run of notebooks 02-06 |
+| `src/mp1/`, `run_mp1.py` | headless execution of the analysis pipeline (notebooks 02-06) |
 | `config.yaml` | every path and threshold (the same values as the notebooks' parameter cells) |
 | `data/raw/` | the original recording and variable file, never modified |
-| `docs/methodology.md` | loss definition, assumptions, method choices, signal meanings, limitations |
-| `docs/report.md` | technical report |
 | `reports/evidence_tables.xlsx` | every evidence table, one sheet each (written by notebook 06) |
 | `reports/figures/` | the figures of the report (written by notebooks 02, 04 and 06) |
-| `reports/presentation.pptx` | slides |
 | `requirements.txt`, `LICENSE` | dependencies, licence |
